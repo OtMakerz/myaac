@@ -1,17 +1,16 @@
-FROM php:8.5-apache
+FROM php:8.4-apache
 
 # Install required PHP extensions
 RUN apt-get update && apt-get install -y \
     libgd-dev \
     libzip-dev \
     curl \
-    git \
+    nodejs \
+    npm \
     && docker-php-ext-install -j$(nproc) \
     pdo_mysql \
     gd \
     zip \
-    nodejs \
-    npm \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install Composer
